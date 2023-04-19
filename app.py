@@ -1,5 +1,5 @@
-from flask import Flask, render_template
-from database import load_users_from_db
+from flask import Flask, render_template, jsonify
+from database import load_users_from_db, load_user_from_db
 
 app = Flask(__name__)
 
@@ -16,7 +16,7 @@ MEMBERS = [{
   'id': 4,
   'name': 'Amarjeet Boruah'
 }]
-
+  
 
 @app.route("/")
 def hello_world():
@@ -35,6 +35,20 @@ def login_page():
 @app.route("/signup")
 def signup_page():
   return render_template('signup.html')
+
+
+
+@app.route("/users/<id>")
+def showuser(id):
+  user = load_user_from_db(id)
+  return render_template('userpage.html',user=user)
+
+
+@app.route("/users")
+def allusers():
+  users = load_users_from_db()
+  return jsonify(users)
+
 
 
 if __name__ == '__main__':
