@@ -33,6 +33,8 @@ def load_users_from_db():
 #   print(users)
 
 #function to fetch user from the database as thier id as argument
+
+
 def load_user_from_db(id):
   with engine.connect() as conn:
     result = conn.execute(text("SELECT id FROM users WHERE number = :id"), {"id": id})
