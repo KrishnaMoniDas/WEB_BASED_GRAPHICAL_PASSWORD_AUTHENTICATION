@@ -1,5 +1,5 @@
 from flask import Flask, render_template, jsonify
-from database import load_users_from_db, load_user_from_db
+from database import load_users_from_db, load_user_from_db, about_from_db
 
 app = Flask(__name__)
 
@@ -21,10 +21,11 @@ MEMBERS = [{
 @app.route("/")
 def hello_world():
   users = load_users_from_db()
+  about = about_from_db()
   return render_template('home.html',
                          Website_dev='Krishna Moni Das',
                          users=users,
-                         members=MEMBERS)
+                         members=MEMBERS, about=about)
 
 
 @app.route("/login")

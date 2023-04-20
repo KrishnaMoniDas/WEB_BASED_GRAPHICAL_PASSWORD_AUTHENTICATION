@@ -1,6 +1,8 @@
 import os
 from sqlalchemy import create_engine, text
 
+
+#connecting to the database
 db_conn_string = os.environ['DB_CONNECTION_STRING']
 
 engine = create_engine(db_conn_string,
@@ -8,7 +10,7 @@ engine = create_engine(db_conn_string,
                          "ssl_ca": "/etc/ssl/cert.pem"
                        }})
 
-
+#fetching the users in the database and their id as a python dictionary
 def load_users_from_db():
   with engine.connect() as conn:
     result = conn.execute(text("SELECT number, id FROM users"))
@@ -30,7 +32,7 @@ def load_users_from_db():
 #         users.append(user_dict)
 #   print(users)
 
-
+#function to fetch user from the database as thier id as argument
 def load_user_from_db(id):
   with engine.connect() as conn:
     result = conn.execute(text("SELECT id FROM users WHERE number = :id"), {"id": id})
@@ -41,4 +43,26 @@ def load_user_from_db(id):
       return None
 
 
+#fetching about page list from the 
+def about_from_db():
+  with engine.connect() as conn: 
+    result = conn.execute(text("SELECT * FROM about"))  
+    about = result.all()
+    about_first = str(about[0])
+    about_string = ""
+    for i in range(len(about_first)):
+      if about_first[i] != '(' and about_first[i] != ')' and about_first[i] != ',':
+        about_string = about_string + about_first[i]
+    return about_string
+
+
+# with engine.connect() as conn: 
+#     result = conn.execute(text("SELECT * FROM about"))  
+#     about = result.all()
+#     about_first = str(about[0])
+#     about_string = ""
+#     for i in range(len(about_first)):
+#       if about_first[i] != '(' and about_first[i] != ')' and about_first[i] != ',':
+#         about_string = about_string + about_first[i]
+#     print(about_string)
 
