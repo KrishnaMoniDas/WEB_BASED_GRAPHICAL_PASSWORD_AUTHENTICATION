@@ -16,19 +16,65 @@
     </a>
   </div>
 </nav>
-  
+
+  <style>
+    #main_container{
+      max-width: 720px;
+      margin: 0 auto;
+      justify-content: center;
+    }
+  </style>
     
 </head>
-<body>
-    <div class="input section">
-        <label for="textfield">Selected Image ID's (for debugging) :</label>
-	    <input type="text" id="textfield" disabled>
+<body> 
+
+<div id="main_container">
+  <!-- grid will be generated here -->
+  <div class="accordion" id="accordionExample">
+    <div class="accordion-item">
+      <h2 class="accordion-header">
+        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+          <b>Choose Your Icon Based Password Sequence</b>
+        </button>
+      </h2>
+      <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+        <div class="accordion-body">
+          
+          <div id="grid">
+<!-- icon grid generation -->
+</div>
+          
+        </div>
+      </div>
+    </div>
     </div>
 
-    <div id="grid">
-        <!-- grid will be generated here -->
+
+  
+
+  
+  
+  <div id="signup_password_section">
+  
+  <div id="Signup">
+        <label for="textfield">E-mail ID:</label>
+	    <input type="email" id="email_input">
+    </div>
+  
+    <div id="input section">
+        <label for="textfield">Image Selection Update Checker:</label>
+	    <input type="password" id="textfield" disabled>
     </div>
 
+  </div>
+
+  <div id="Notes">
+      <footer><b>Instructions</b><br>
+      Please click on the icons in a sequence to select your graphical password<br>Please select 8 icons to successfully make your graphical password login</footer>
+    </div>
+
+
+</div>
     <script>
 // script is added here for image grid generation and other important functionality
 
@@ -92,7 +138,5 @@ for(var i=0;i<images.length;i++){
 
 </script>
 
-
-    
 </body>
 </html>
