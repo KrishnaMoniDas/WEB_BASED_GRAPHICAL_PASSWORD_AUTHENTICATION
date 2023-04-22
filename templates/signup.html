@@ -29,7 +29,7 @@
 <body> 
 
 <div id="main_container">
-  <!-- grid will be generated here -->
+  <!-- grid accordian will be generated here -->
   <div class="accordion" id="accordionExample">
     <div class="accordion-item">
       <h2 class="accordion-header">
@@ -41,31 +41,29 @@
         <div class="accordion-body">
           
           <div id="grid">
-<!-- icon grid generation -->
-</div>
+          <!-- icon grid generation -->
+          </div>
           
         </div>
       </div>
     </div>
     </div>
-
-
   
-
-  
+<!-- signup detail form section -->
   
   <div id="signup_password_section">
-  
-  <div id="Signup">
-        <label for="textfield">E-mail ID:</label>
-	    <input type="email" id="email_input">
-    </div>
-  
-    <div id="input section">
-        <label for="textfield">Image Selection Update Checker:</label>
-	    <input type="password" id="textfield" disabled>
-    </div>
 
+  <form action="/signup" method="POST">
+    
+    <label for="email">Enter your email:</label>
+		<input type="email" id="email" name="email"><br><br>
+      
+    <label for="textfield">Image Selection Update Checker:</label>
+	  <input type="password" id="textfield" name="selection"><br><br>
+      
+		<input type="submit" value="Submit">
+	</form>
+    
   </div>
 
   <div id="Notes">
@@ -111,7 +109,7 @@ const image14 = new image("https://cdn-icons-png.flaticon.com/128/3137/3137044.p
 const image15 = new image("https://cdn-icons-png.flaticon.com/128/5683/5683727.png",674);
 const image16 = new image("https://cdn-icons-png.flaticon.com/128/6866/6866548.png",567);
 const image17 = new image("https://cdn-icons-png.flaticon.com/128/5721/5721962.png",198);
-const image18 = new image("https://cdn-icons-png.flaticon.com/128/7223/7223203.png",-1);
+const image18 = new image("https://cdn-icons-png.flaticon.com/128/7223/7223203.png",109);
 const image19 = new image("https://cdn-icons-png.flaticon.com/128/1099/1099794.png",123);
 
 // images can be added manaully by the developer along with their properties

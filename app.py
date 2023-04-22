@@ -1,5 +1,5 @@
-from flask import Flask, render_template, jsonify
-from database import load_users_from_db, load_user_from_db, about_from_db
+from flask import Flask, render_template, jsonify, request
+from database import load_users_from_db, load_user_from_db, about_from_db, submit_to_db
 
 app = Flask(__name__)
 
@@ -33,9 +33,20 @@ def login_page():
   return render_template('login.html')
 
 
-@app.route("/signup")
+# @app.route("/signup")
+# def signup_page():
+#   return render_template('signup.html')
+
+
+@app.route("/signup", methods=["POST", "GET"])
 def signup_page():
-  return render_template('signup.html')
+    if request.method == "POST":
+        email = request.form["email"]
+        selection = request.form.get("selection")
+        submit_to_db(email, selection)
+        return render_template("signup.html")
+    else:
+        return render_template("signup.html")  
 
 
 
