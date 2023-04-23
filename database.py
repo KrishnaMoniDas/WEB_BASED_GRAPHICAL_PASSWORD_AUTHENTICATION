@@ -73,3 +73,17 @@ def submit_to_db(email, selection):
   with engine.connect() as conn:
     query = text("INSERT INTO users (id, passwd) VALUES (:email, :selection)")
     conn.execute(query, {"email": email, "selection": selection})
+
+
+
+
+def valid_login(email,selection):
+  with engine.connect() as conn:
+    result = conn.execute(text("select id, passwd from users"))
+    users = dict(result.all())
+    
+    if email in users.keys():
+      if users[email] == selection:
+        return 1
+    else:
+      return 0

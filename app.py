@@ -1,6 +1,6 @@
 from flask import Flask, render_template, jsonify, request, redirect, url_for
 
-from database import load_users_from_db, load_user_from_db, about_from_db, submit_to_db
+from database import load_users_from_db, load_user_from_db, about_from_db, submit_to_db, valid_login
 
 app = Flask(__name__)
 
@@ -29,14 +29,21 @@ def hello_world():
                          members=MEMBERS, about=about)
 
 
-@app.route("/login")
+@app.route("/login", methods=["POST", "GET"])
 def login_page():
-  return render_template('login.html')
+  if request.method == "POST":
+        email = request.form["login_email"]
+        selection = request.form.get("login_selection")
+        result = valid_login(email, selection)
+        print(result)
+        if result == 1:
+          return redirect(url_for('login_success')) #successfully loggedin
+        else:
+          return redirect(url_for('login_failed'))
+  else:
+    return render_template("login.html")
 
 
-# @app.route("/signup")
-# def signup_page():
-#   return render_template('signup.html')
 
 
 @app.route("/signup", methods=["POST", "GET"])
@@ -53,6 +60,16 @@ def signup_page():
 @app.route("/success")
 def success():
   return render_template("response.html")
+
+
+@app.route("/login_success")
+def login_success():
+  return render_template("response_login.html")
+
+
+@app.route("/login_failed")
+def login_failed():
+  return render_template("user_doesnt_exist.html")
 
 
 
