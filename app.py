@@ -51,8 +51,11 @@ def signup_page():
     if request.method == "POST":
         email = request.form["email"]
         selection = request.form.get("selection")
-        submit_to_db(email, selection)
-        return redirect(url_for('success')) #successfully signedup
+        result = submit_to_db(email, selection)
+        if result == 1:
+          return redirect(url_for('success')) #successfully signedup
+        else:
+          return redirect(url_for('signup_failed'))
     else:
         return render_template("signup.html") 
 
@@ -60,6 +63,11 @@ def signup_page():
 @app.route("/success")
 def success():
   return render_template("response.html")
+
+
+@app.route("/signup_failed")
+def signup_failed():
+  return render_template("problem_signing_up.html")
 
 
 @app.route("/login_success")
