@@ -1,5 +1,6 @@
 import os
 from sqlalchemy import create_engine, text
+from misc import  algorithm_implementation
 
 
 #connecting to the database
@@ -77,6 +78,7 @@ def submit_to_db(email, selection):
       return 0
     else:
       query = text("INSERT INTO users (id, passwd) VALUES (:email, :selection)")
+      selection = algorithm_implementation(selection)
       conn.execute(query, {"email": email, "selection": selection})
       return 1
 
@@ -86,6 +88,7 @@ def valid_login(email,selection):
   with engine.connect() as conn:
     result = conn.execute(text("select id, passwd from users"))
     users = dict(result.all())
+    selection = algorithm_implementation(selection)
     if email in users.keys():
       if users[email] == selection:
         return 1
