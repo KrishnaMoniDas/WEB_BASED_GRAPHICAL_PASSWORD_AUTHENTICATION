@@ -1,4 +1,5 @@
-from flask import Flask, render_template, jsonify, request
+from flask import Flask, render_template, jsonify, request, redirect, url_for
+
 from database import load_users_from_db, load_user_from_db, about_from_db, submit_to_db
 
 app = Flask(__name__)
@@ -44,9 +45,14 @@ def signup_page():
         email = request.form["email"]
         selection = request.form.get("selection")
         submit_to_db(email, selection)
-        return render_template("signup.html")
+        return redirect(url_for('success')) #successfully signedup
     else:
-        return render_template("signup.html")  
+        return render_template("signup.html") 
+
+
+@app.route("/success")
+def success():
+  return render_template("response.html")
 
 
 

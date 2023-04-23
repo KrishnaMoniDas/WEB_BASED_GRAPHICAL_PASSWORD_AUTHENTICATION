@@ -73,4 +73,3 @@ def submit_to_db(email, selection):
   with engine.connect() as conn:
     query = text("INSERT INTO users (id, passwd) VALUES (:email, :selection)")
     conn.execute(query, {"email": email, "selection": selection})
-    
