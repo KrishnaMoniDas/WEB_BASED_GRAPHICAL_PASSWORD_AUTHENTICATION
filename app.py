@@ -7,15 +7,6 @@ app = Flask(__name__)
 MEMBERS = [{
   'id': 1,
   'name': 'Krishna Moni Das'
-}, {
-  'id': 2,
-  'name': 'Milonjyoti Borah'
-}, {
-  'id': 3,
-  'name': 'Abir Banerjee'
-}, {
-  'id': 4,
-  'name': 'Amarjeet Boruah'
 }]
   
 
