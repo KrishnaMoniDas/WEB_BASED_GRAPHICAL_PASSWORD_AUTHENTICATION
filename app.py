@@ -1,5 +1,4 @@
 from flask import Flask, render_template, jsonify, request, redirect, url_for
-
 from database import load_users_from_db, load_user_from_db, about_from_db, submit_to_db, valid_login
 
 app = Flask(__name__)
@@ -8,7 +7,6 @@ MEMBERS = [{
   'id': 1,
   'name': 'Krishna Moni Das'
 }]
-  
 
 @app.route("/")
 def hello_world():
@@ -48,7 +46,7 @@ def signup_page():
         else:
           return redirect(url_for('signup_failed'))
     else:
-        return render_template("signup.html") 
+        return render_template("signup.html")
 
 
 @app.route("/success")
@@ -86,4 +84,4 @@ def allusers():
 
 
 if __name__ == '__main__':
-  app.run(host='0.0.0.0', debug=True)
+  app.run(host='0.0.0.0', debug=False)
